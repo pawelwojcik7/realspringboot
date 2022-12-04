@@ -28,10 +28,10 @@ public class CountryController {
         return ResponseEntity.ok(countryService.getCountriesByPopulation(minPopulation, maxPopulation));
     }
 
-    @GetMapping("/country/area/{minArea}/{maxArea}")
-    public ResponseEntity<List<Country>> getCountriesByArea(@PathVariable Long minArea, @PathVariable Long maxArea){
+    @GetMapping("/country/area/{continent}/{minArea}/{maxArea}")
+    public ResponseEntity<List<Country>> getCountriesByArea(@PathVariable Long minArea, @PathVariable Long maxArea, @PathVariable String continent){
 
-        return ResponseEntity.ok(countryService.getCountriesByArea(minArea, maxArea));
+        return ResponseEntity.ok(countryService.getCountriesByArea(minArea, maxArea, continent));
     }
 
     @GetMapping("/HTML/country/continent/{continent}")
@@ -46,10 +46,10 @@ public class CountryController {
         return ResponseEntity.ok(countryService.getCountriesByPopulationToString(minPopulation, maxPopulation));
     }
 
-    @GetMapping("/HTML/country/area/{minArea}/{maxArea}")
-    public ResponseEntity<String> getCountriesByAreaHTML(@PathVariable Long minArea, @PathVariable Long maxArea){
+    @GetMapping("/HTML/country/area/{continent}/{minArea}/{maxArea}")
+    public ResponseEntity<String> getCountriesByAreaHTML(@PathVariable Long minArea, @PathVariable Long maxArea, @PathVariable String continent){
 
-        return ResponseEntity.ok(countryService.getCountriesByAreaToString(minArea, maxArea));
+        return ResponseEntity.ok(countryService.getCountriesByAreaToString(minArea, maxArea, continent));
     }
 
 

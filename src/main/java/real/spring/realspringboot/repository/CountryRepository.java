@@ -23,7 +23,7 @@ public class CountryRepository {
       "SELECT * FROM `country` WHERE Population BETWEEN ? AND ? ";
   // language=SQL
   private static final String SELECT_COUNTRY_BY_AREA =
-      "SELECT * FROM `country` WHERE SurfaceArea BETWEEN ? AND ?";
+      "SELECT * FROM `country` WHERE SurfaceArea BETWEEN ? AND ? AND Continent = ? ";
 
   public List<Country> selectByContinent(String continent) throws DataAccessException {
 
@@ -45,7 +45,7 @@ public class CountryRepository {
         new BeanPropertyRowMapper<>(Country.class));
   }
 
-    public List<Country> selectByArea(Long minArea, Long maxArea)
+    public List<Country> selectByArea(Long minArea, Long maxArea, String continent)
             throws DataAccessException {
 
         return jdbcTemplate.query(
@@ -53,6 +53,7 @@ public class CountryRepository {
                 ps -> {
                     ps.setLong(1, minArea);
                     ps.setLong(2, maxArea);
+                    ps.setString(3, continent);
                 },
                 new BeanPropertyRowMapper<>(Country.class));
     }

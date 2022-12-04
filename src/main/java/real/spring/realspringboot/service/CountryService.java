@@ -34,10 +34,10 @@ public class CountryService {
     }
   }
 
-  public List<Country> getCountriesByArea(Long minArea, Long maxArea) {
+  public List<Country> getCountriesByArea(Long minArea, Long maxArea, String continent) {
 
     try {
-      return countryRepository.selectByArea(minArea, maxArea);
+      return countryRepository.selectByArea(minArea, maxArea, continent);
     } catch (DataAccessException e) {
       return Collections.emptyList();
     }
@@ -75,11 +75,11 @@ public class CountryService {
     }
   }
 
-  public String getCountriesByAreaToString(Long minArea, Long maxArea) {
+  public String getCountriesByAreaToString(Long minArea, Long maxArea, String continent) {
     StringBuilder stringBuilder = new StringBuilder();
     List<Country> list = new ArrayList<>();
     try {
-      list = countryRepository.selectByArea(minArea, maxArea);
+      list = countryRepository.selectByArea(minArea, maxArea, continent);
     } catch (DataAccessException e) {
       e.printStackTrace();
     }
